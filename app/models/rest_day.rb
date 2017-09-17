@@ -1,0 +1,1 @@
+class RestDay < Day; end

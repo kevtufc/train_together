@@ -1,0 +1,6 @@
+section#week_summary
+  - if @days.blank?
+    h2 No plans this week
+  - else
+    - @days.each do |day| 
+      = render partial: 'days/day', object: day

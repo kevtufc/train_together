@@ -1,0 +1,1 @@
+class IndoorRide < Day; end

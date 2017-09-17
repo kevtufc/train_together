@@ -1,0 +1,1 @@
+class OutdoorRide < Day; end
