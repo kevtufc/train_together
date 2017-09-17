@@ -34,12 +34,6 @@ Then(/^I see (\d+) days? called "([^"]*)"$/) do |count, title|
   expect(page).to have_css('.day h4', text: /^#{title}$/, count: count)
 end
 
-Then(/^save and open page$/) do
-  save_and_open_page
-end
-
-
-Then(/^pry$/) do
-  require 'pry'
-  binding.pry
+Then(/^I see no days$/) do
+  expect(page).to_not have_css('.day')
 end
