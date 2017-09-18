@@ -11,9 +11,6 @@ RSpec.shared_examples 'a planned day' do
   it { is_expected.to validate_numericality_of(:week) }
   it { is_expected.to validate_inclusion_of(:day_of_week).in_range(1..7)}
   it { is_expected.to belong_to :plan }
-  it 'has a display friendly type' do
-    expect(day.display_type).to eq(day.class.name.humanize)
-  end
 end
 
 RSpec.describe Day, type: :model do
