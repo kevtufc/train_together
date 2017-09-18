@@ -8,6 +8,6 @@ html
 
   body
     = render 'layouts/topbar'
-    main.ui.container = yield
-    .notice = notice
-    .alert = alert
+    .ui.container
+      = render 'layouts/notices'
+      main = yield  
