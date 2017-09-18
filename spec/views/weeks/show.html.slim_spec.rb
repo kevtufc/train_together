@@ -9,9 +9,9 @@ RSpec.describe "weeks/show.html.slim", type: :view do
       create(:day, day_of_week: 3, title: 'Day Three')
     ] )
     render
-    expect(rendered).to have_css('.day h4', text: 'Day One')
-    expect(rendered).to have_css('.day h4', text: 'Day Two')
-    expect(rendered).to have_css('.day h4', text: 'Day Three')
+    expect(rendered).to have_css('.day h3', text: 'Day One')
+    expect(rendered).to have_css('.day h3', text: 'Day Two')
+    expect(rendered).to have_css('.day h3', text: 'Day Three')
   end
 
   it 'shows a message if there\'s no plans this week' do

@@ -1,4 +1,5 @@
 .day
-  h3 = day.model_name.human
-  h4 = day.title
+  h4 = Date::DAYNAMES[day.day_of_week == 7 ? 0 : day.day_of_week] 
+  h3 = day.title
+  h4 = day.model_name.human
   
