@@ -1,31 +1,22 @@
-h2 Sign up
-
-= form_for(User.new, as: 'user', url: registration_path('user')) do |f|
-  = devise_error_messages!
-
-  .field
-    = f.label :name
-    br
-    = f.text_field :name, autofocus: true
-
-  .field
-    = f.label :email
-    br
-    = f.email_field :email
-
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em ="(#{@minimum_password_length} characters minimum"
-      br
-    = f.password_field :password, autocomplete: "off"
-
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-
-  .actions
-    = f.submit "Sign up"
-
-  = render "devise/shared/links"
+#sign-up-box
+  .ui.middle.aligned.center.aligned.grid
+    .column.left.aligned
+      h1.ui.teal.header.brand.center.aligned Sign up and Train Together
+      = form_for(User.new, as: 'user', url: registration_path('user'), html: { class: ['ui', 'form'] }) do |f|
+        .ui.segment
+          = devise_error_messages!
+          .field
+            = f.label :name
+            = f.text_field :name, autofocus: true
+          .field
+            = f.label :email
+            = f.email_field :email
+          .field
+            = f.label :password
+            - if @minimum_password_length
+              em = "(#{@minimum_password_length} characters minimum)"
+            = f.password_field :password, autocomplete: "off"
+          .field
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+          = f.submit "Sign up", class: %w[ui large fluid primary button]
