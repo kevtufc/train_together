@@ -14,24 +14,32 @@ RSpec.describe WeeksController, type: :controller do
     ]
   end
 
-  before(:each) do
-    plan.days << days
-    user.teams << team
-    team.starts_following(plan, on: date)
-    sign_in user
-  end
+  context 'as a user set up in a team with a plan' do
+    before(:each) do
+      plan.days << days
+      user.teams << team
+      team.starts_following(plan, on: date)
+      sign_in user
+    end
 
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response).to have_http_status(:success)
+    describe "GET #index" do
+      it "returns http success" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'GET #show' do
+      it 'gets the days for the week' do
+        get :show, params: { date: date }
+        expect(assigns(:days)).to match_array(days)
+      end
     end
   end
 
-  describe 'GET #show' do
-    it 'gets the days for the week' do
-      get :show, params: { date: date }
-      expect(assigns(:days)).to match_array(days)
+  context 'not even logged in' do
+    it 'redirects to the login page' do
+      expect(get :index).to redirect_to(user_session_url)
     end
   end
 end

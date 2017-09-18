@@ -13,8 +13,8 @@ gem 'uglifier',                   '>= 1.3.0'
 gem 'slim-rails'
 gem 'turbolinks',                 '~> 5'
 gem 'sass-rails',                 '~> 5.0'
-gem 'bulma-rails',                '~> 0.5.1'
 gem 'coffee-rails',               '~> 4.2'
+gem 'semantic-ui-sass'
 gem 'font-awesome-sass'
 
 group :development, :test do

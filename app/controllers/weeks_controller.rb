@@ -1,4 +1,6 @@
 class WeeksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @days = days_for Date.today
     render action: 'show'

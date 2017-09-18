@@ -1,0 +1,12 @@
+#topbar.ui.fixed.inverted.menu
+  .ui.container
+    a.header.item.brand href='#'
+      | Train Together
+    .right.menu
+      .item
+        - if current_user
+          .current_user
+            .username = current_user.name
+        - else
+          = link_to "Log in", user_session_path
+      

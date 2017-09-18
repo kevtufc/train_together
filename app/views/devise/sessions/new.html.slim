@@ -1,0 +1,17 @@
+#login-box
+  .ui.middle.aligned.center.aligned.grid
+    .column
+      h2.ui.teal.header.brand Train Together
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: %w[ui large form] }) do |f|
+        .ui.stacked.segment
+          .field
+            .ui.left.icon.input
+              i.user.icon
+              = f.email_field :email, placeholder: 'Username or email', autofocus: true
+          .field
+            .ui.left.icon.input
+              i.lock.icon
+              = f.password_field :password, placeholder: 'password', autocomplete: "off"
+          = f.submit 'Login', class: %w[ui fluid large teal button]
+          br
+          = render "devise/shared/links"
