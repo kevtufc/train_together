@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe WeeksController, type: :controller do
   include Devise::Test::ControllerHelpers
 
-  let(:user) { create(:user) }
-  let(:team) { create(:team) }
-  let(:date) { Date.new(2017,1,1) }
-  let(:plan) { create(:plan) }
+  let(:user)          { create(:user)          }
+  let(:team)          { create(:team)          }
+  let(:plan_follower) { create(:plan_follower) }
+  let(:date)          { Date.new(2017, 1, 2)   }
+  let(:plan)          { create(:plan)          }
   let(:days) do [
       create(:day, day_of_week: 1, title: 'Day One'),
       create(:day, day_of_week: 2, title: 'Day Two'),

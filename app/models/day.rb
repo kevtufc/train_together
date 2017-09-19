@@ -4,7 +4,9 @@ class Day < ApplicationRecord
   validates :week, presence: true, numericality: true
   validates :title, presence: true
 
-  def display_type
-    self.class.name.humanize
+  attr_accessor :plan_follower
+
+  def icon
+    'calendar outline'
   end
 end

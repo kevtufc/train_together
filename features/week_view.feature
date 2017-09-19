@@ -16,24 +16,24 @@ Feature: Week View
       | Club Ride | OutdoorRide  | 2    | 7           |
     And a team called "Cool Team"
     And "Kev" is in team "Cool Team"
-    And "Cool Team" is following "Simple Plan" from 01/01/2017
+    And "Cool Team" is following "Simple Plan" from 02/01/2017
     And I log in with email "kev@example.com" and password "password"
 
   Scenario: View a week full of planned days
-    When I view week 01/01/2017
+    When I view week 02/01/2017
     Then I see 2 days called "Rest"
     And I see 2 days called "Ride"
     And I see 1 day called "Club Ride"
     And I see 1 day called "Pyramids"
     And I see 1 day called "Cross"
 
-  Scenario: View a week before the plan starts
-    When I view week 1/12/2016
+    Scenario: View a week before the plan starts
+    When I view week 2/12/2016
     Then I see no days
     And I see the text "No plans this week"
 
   Scenario: View a week with just one day
-    When I view week 7/1/2017
+    When I view week 9/1/2017
     Then I see 1 day called "Club Ride"
     And I see 0 days called "Rest"
     And I see 0 days called "Pyramids"

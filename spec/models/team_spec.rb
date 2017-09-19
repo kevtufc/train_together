@@ -7,7 +7,7 @@ RSpec.describe Team, type: :model do
   it { is_expected.to have_many(:plan_followers) }
   it { is_expected.to have_many(:plans) }
 
-  let(:date) { Date.new(2017, 01, 01) }
+  let(:date) { Date.new(2017, 1, 2) }
   let(:plan) { create(:plan) }
   let(:team) { create(:team) }
 

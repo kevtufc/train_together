@@ -1,5 +1,5 @@
-.day
-  h4 = Date::DAYNAMES[day.day_of_week == 7 ? 0 : day.day_of_week] 
-  h3 = day.title
-  h4 = day.model_name.human
-  
+.ui.step class=(day.plan_follower.today?(day) ? 'active' : 'plop')
+  i.icon class = day.icon
+  .content.day
+    .title = day.title
+    .description = Date::DAYNAMES[day.day_of_week == 7 ? 0 : day.day_of_week] 

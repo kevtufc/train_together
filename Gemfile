@@ -21,10 +21,12 @@ group :development, :test do
   gem 'pry'
   gem 'byebug'
   gem 'launchy'
+  gem 'timecop'
   gem 'rubocop'
   gem 'capybara',                 '~> 2.13'
   gem 'rspec-rails',              '~> 3.6'
   gem 'cucumber-rails',           require: false
+  gem 'validation_rage'
   gem 'database_cleaner'
   gem 'shoulda-matchers',         '~> 3.0'
   gem 'factory_girl_rails'

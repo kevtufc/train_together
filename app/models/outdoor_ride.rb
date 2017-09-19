@@ -1,1 +1,5 @@
-class OutdoorRide < Day; end
+class OutdoorRide < Day
+  def icon
+    'bicycle'
+  end
+end

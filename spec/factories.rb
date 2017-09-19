@@ -14,7 +14,7 @@ FactoryGirl.define do
   end
 
   factory :plan_follower do
-    start_date Date.new(2017, 9, 1)
+    start_date Date.new(2017, 8, 28)
     plan
     team
   end

@@ -1,1 +1,5 @@
-class IndoorRide < Day; end
+class IndoorRide < Day
+  def icon
+    'home'
+  end
+end

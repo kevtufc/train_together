@@ -20,7 +20,7 @@ When(/^I view week (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|
 end
 
 Then(/^I see (\d+) days? called "([^"]*)"$/) do |count, title|
-  expect(page).to have_css('.day h3', text: /^#{title}$/, count: count)
+  expect(page).to have_css('.day .title', text: /^#{title}$/, count: count)
 end
 
 Then(/^I see no days$/) do
