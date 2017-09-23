@@ -2,4 +2,4 @@
   i.icon class = day.icon
   .content.day
     .title = day.title
-    .description = Date::DAYNAMES[day.day_of_week == 7 ? 0 : day.day_of_week] 
+    time.description datetime=day.plan_follower.date_for(day).to_s(:db) = Date::DAYNAMES[day.day_of_week == 7 ? 0 : day.day_of_week] 

@@ -1,3 +1,9 @@
+h2#date-select
+  = link_to week_path(date: @date - 1.week), title: 'previous week' do
+    i.icon.arrow.left
+  = @date.strftime('%d %B %Y')
+  = link_to week_path(date: @date + 1.week), title: 'next week' do
+    i.icon.arrow.right
 section#week-summary
   - if @days.blank?
     h2 No plans this week

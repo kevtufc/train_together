@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: 'weeks#index'
-  resource :weeks
+  get 'weeks', to: 'weeks#index'
+  get 'week/:date', to: 'weeks#show', constraints: { date: /\d{4}-\d{2}-\d{2}/ }, as: :'week'
 end

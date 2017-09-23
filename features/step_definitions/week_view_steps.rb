@@ -16,7 +16,7 @@ Given(/^"([^"]*)" is following "([^"]*)" from (\d+)\/(\d+)\/(\d+)$/) do |team, p
 end
 
 When(/^I view week (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|
-  visit weeks_path(date: Date.new(year.to_i, month.to_i, day.to_i))
+  visit week_path(date: Date.new(year.to_i, month.to_i, day.to_i))
 end
 
 Then(/^I see (\d+) days? called "([^"]*)"$/) do |count, title|
@@ -25,4 +25,14 @@ end
 
 Then(/^I see no days$/) do
   expect(page).to_not have_css('.day')
+end
+
+Then(/^I see a link to week (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|
+  date = Date.new(year.to_i, month.to_i, day.to_i)
+  expect(page).to have_link('', href: week_path(date))
+end
+
+Then(/^the day (\d+)\/(\d+)\/(\d+) is selected$/) do |day, month, year|
+  date = Date.new(year.to_i, month.to_i, day.to_i)
+  expect(page).to have_css(".day time[datetime='#{date.to_s(:db)}']",)
 end

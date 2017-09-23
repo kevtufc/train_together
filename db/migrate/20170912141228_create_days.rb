@@ -6,7 +6,7 @@ class CreateDays < ActiveRecord::Migration[5.1]
       t.integer :day_of_week
       t.string :type
       t.string :title
-      t.string :description
+      t.text :description
       t.integer :minutes
       t.integer :meters
       t.timestamps

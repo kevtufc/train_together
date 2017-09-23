@@ -37,3 +37,13 @@ Feature: Week View
     Then I see 1 day called "Club Ride"
     And I see 0 days called "Rest"
     And I see 0 days called "Pyramids"
+
+  Scenario: I can move back and forward in weeks
+    When I view week 2/1/2017
+    Then I see a link to week 9/1/2017
+    Then I see a link to week 26/12/2016
+
+  Scenario: Current day is selected
+    Given the date is 3/1/2017
+    When I view week 2/1/2017
+    Then the day 2/1/2017 is selected
