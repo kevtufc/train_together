@@ -24,13 +24,24 @@ RSpec.describe WeeksController, type: :controller do
     end
 
     describe "GET #index" do
-      it "returns http success" do
+      it 'sets the current date for the start of the week' do
+        Timecop.travel(date)
         get :index
-        expect(response).to have_http_status(:success)
+        expect(assigns(:date)).to eq(date)
+      end
+
+      it 'gets the days for the week' do
+        get :index
+        expect(assigns(:days)).to match_array(days)
       end
     end
 
     describe 'GET #show' do
+      it 'sets the date for the start of the week' do
+        get :show, params: { date: date + 1.day }
+        expect(assigns(:date)).to eq(date)
+      end
+
       it 'gets the days for the week' do
         get :show, params: { date: date }
         expect(assigns(:days)).to match_array(days)

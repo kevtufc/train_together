@@ -2,19 +2,21 @@ class WeeksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @days = days_for Date.today
+    @date = Date.today.beginning_of_week
+    load_days
     render action: 'show'
   end
 
   def show
-    @days = days_for(Date.parse(params[:date]))
+    @date = Date.parse(params[:date]).monday
+    load_days
   end
 
   private
 
-  def days_for(date)
-    current_user.plan_followers.map do |plan_follower|
-      plan_follower.days_for date
+  def load_days
+    @days = current_user.plan_followers.map do |plan_follower|
+      plan_follower.days_for @date
     end.flatten
   end
 end

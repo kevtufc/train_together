@@ -1,7 +1,7 @@
-section#week_summary
+section#week-summary
   - if @days.blank?
     h2 No plans this week
   - else
-    .ui.steps
+    .ui.steps style='flex-flow: row wrap'
       - @days.each do |day| 
         = render partial: 'days/day', object: day
