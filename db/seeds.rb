@@ -15,7 +15,7 @@ plan = Plan.create title: 'Kev\'s Plan'
     day.title = 'Saturday Ride'
     day.day_of_week = 6
     day.description = <<~END
-      <h1>Big Saturday Ride</h1>
+      <h3>Big Saturday Ride</h3>
       <p>
         Some description about the Big Saturday Ride. Something nice and interesting.
         Blah blah blah blah blah.
@@ -28,7 +28,7 @@ plan = Plan.create title: 'Kev\'s Plan'
           <li>Avoid falling off</li>
         </ul>
       </p>
-      <h2>Once you've finished</h2>
+      <h4>Once you've finished</h4>
       <p>
         Put normal clothes on and eat a cake.  <ul>
           <li>Ride your bike</li>

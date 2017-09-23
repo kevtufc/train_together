@@ -14,6 +14,6 @@ h2#date-select
     h2 No plans this week
 
 - if @day
-  #selected-day.attached.segment
+  #selected-day.ui.segment
     h2 = @day.title
-    p.description = @day.description
+    p.description = raw @day.description
