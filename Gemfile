@@ -24,6 +24,7 @@ group :development, :test do
   gem 'timecop'
   gem 'rubocop'
   gem 'capybara',                 '~> 2.13'
+  gem 'simplecov',                require: false
   gem 'rspec-rails',              '~> 3.6'
   gem 'cucumber-rails',           require: false
   gem 'validation_rage'
