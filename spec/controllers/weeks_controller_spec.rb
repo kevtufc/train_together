@@ -10,8 +10,8 @@ RSpec.describe WeeksController, type: :controller do
   let(:plan)          { create(:plan)          }
   let(:days) do [
       create(:day, day_of_week: 1, title: 'Day One'),
-      create(:day, day_of_week: 2, title: 'Day Two'),
-      create(:day, day_of_week: 3, title: 'Day Three')
+      create(:day, day_of_week: 3, title: 'Day Three'),
+      create(:day, day_of_week: 2, title: 'Day Two')
     ]
   end
 
@@ -45,6 +45,11 @@ RSpec.describe WeeksController, type: :controller do
       it 'gets the days for the week' do
         get :show, params: { date: date }
         expect(assigns(:days)).to match_array(days)
+      end
+
+      it 'orders the days for the week' do
+        get :show, params: { date: date }
+        expect(assigns(:days)).to eq(days.sort_by(&:day_of_week))
       end
     end
   end
