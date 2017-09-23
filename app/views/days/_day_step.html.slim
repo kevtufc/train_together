@@ -1,0 +1,5 @@
+a.ui.step class=(date_for(day_step) == @date ? 'active' : nil) href=week_path(date: date_for(day_step))
+  i.icon class = day_step.icon
+  .content.day
+    .title = day_step.title
+    time.description datetime=date_for(day_step).to_s(:db) = Date::DAYNAMES[day_step.day_of_week == 7 ? 0 : day_step.day_of_week] 

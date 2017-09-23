@@ -5,7 +5,6 @@ RSpec.describe WeeksController, type: :controller do
 
   let(:user)          { create(:user)          }
   let(:team)          { create(:team)          }
-  let(:plan_follower) { create(:plan_follower) }
   let(:date)          { Date.new(2017, 1, 2)   }
   let(:plan)          { create(:plan)          }
   let(:days) do [
@@ -50,6 +49,11 @@ RSpec.describe WeeksController, type: :controller do
       it 'orders the days for the week' do
         get :show, params: { date: date }
         expect(assigns(:days)).to eq(days.sort_by(&:day_of_week))
+      end
+
+      it 'sets the plan_follower for the days' do
+        get :show, params: { date: date }
+        assigns(:days).each { |day| expect(day.plan_follower).to eq(plan.plan_followers.first) }
       end
     end
   end

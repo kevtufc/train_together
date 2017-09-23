@@ -1,5 +1,0 @@
-a.ui.step class=(day.plan_follower.date_for(day) == @date ? 'active' : nil) href=week_path(date: day.plan_follower.date_for(day))
-  i.icon class = day.icon
-  .content.day
-    .title = day.title
-    time.description datetime=day.plan_follower.date_for(day).to_s(:db) = Date::DAYNAMES[day.day_of_week == 7 ? 0 : day.day_of_week] 
