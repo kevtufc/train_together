@@ -15,7 +15,7 @@ Given(/^"([^"]*)" is following "([^"]*)" from (\d+)\/(\d+)\/(\d+)$/) do |team, p
   Team.where(title: team).first.starts_following(Plan.where(title: plan).first, on: Date.new(year.to_i, month.to_i, day.to_i))
 end
 
-When(/^I view week (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|
+When(/^I view (week|day) (\d+)\/(\d+)\/(\d+)$/) do |_, day, month, year|
   visit week_path(date: Date.new(year.to_i, month.to_i, day.to_i))
 end
 
@@ -34,5 +34,10 @@ end
 
 Then(/^the day (\d+)\/(\d+)\/(\d+) is selected$/) do |day, month, year|
   date = Date.new(year.to_i, month.to_i, day.to_i)
-  expect(page).to have_css(".day time[datetime='#{date.to_s(:db)}']",)
+  expect(page).to have_css(".ui.step.active .day time[datetime='#{date.to_s(:db)}']")
+end
+
+Then(/^the day (\d+)\/(\d+)\/(\d+) is not selected$/) do |day, month, year|
+  date = Date.new(year.to_i, month.to_i, day.to_i)
+  expect(page).to_not have_css(".ui.step.active .day time[datetime='#{date.to_s(:db)}']")
 end

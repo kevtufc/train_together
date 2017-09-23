@@ -2,13 +2,13 @@ class WeeksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @date = Date.today.beginning_of_week
+    @date = Date.today
     load_days
     render action: 'show'
   end
 
   def show
-    @date = Date.parse(params[:date]).monday
+    @date = Date.parse(params[:date])
     load_days
   end
 

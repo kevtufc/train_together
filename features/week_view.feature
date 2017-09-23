@@ -43,7 +43,7 @@ Feature: Week View
     Then I see a link to week 9/1/2017
     Then I see a link to week 26/12/2016
 
-  Scenario: Current day is selected
-    Given the date is 3/1/2017
-    When I view week 2/1/2017
-    Then the day 2/1/2017 is selected
+  Scenario: Highlight selected day
+    When I view day 3/1/2017
+    Then the day 3/1/2017 is selected
+    And the day 4/1/2017 is not selected

@@ -12,7 +12,7 @@ Then(/^I see the text "([^"]*)"$/) do |text|
 end
 
 When(/^I click "([^"]*)"$/) do |e|
-  click e
+  click_on e
 end
 
 Given(/^the date is (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|

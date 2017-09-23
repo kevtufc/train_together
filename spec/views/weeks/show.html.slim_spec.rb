@@ -26,6 +26,13 @@ RSpec.describe "weeks/show.html.slim", type: :view do
 
     it 'shows the days (with the dates in the attrs)' do
       expect(rendered).to have_css(".day time[datetime='#{date.to_s(:db)}']", text: 'Monday')
+      expect(rendered).to have_css(".day time[datetime='#{(date + 1.day).to_s(:db)}']", text: 'Tuesday')
+      expect(rendered).to have_css(".day time[datetime='#{(date + 2.days).to_s(:db)}']", text: 'Wednesday')
+    end
+
+    it 'has links for the day details' do
+      expect(rendered).to have_css("a[href='#{week_path(date: date)}']")
+      expect(rendered).to have_css("a[href='#{week_path(date: date + 1.day)}']")
     end
 
     it 'shows the current week date' do

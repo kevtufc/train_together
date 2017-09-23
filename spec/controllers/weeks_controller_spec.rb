@@ -24,7 +24,7 @@ RSpec.describe WeeksController, type: :controller do
     end
 
     describe "GET #index" do
-      it 'sets the current date for the start of the week' do
+      it 'sets the current date' do
         Timecop.travel(date)
         get :index
         expect(assigns(:date)).to eq(date)
@@ -37,9 +37,9 @@ RSpec.describe WeeksController, type: :controller do
     end
 
     describe 'GET #show' do
-      it 'sets the date for the start of the week' do
+      it 'sets the date' do
         get :show, params: { date: date + 1.day }
-        expect(assigns(:date)).to eq(date)
+        expect(assigns(:date)).to eq(date + 1.day)
       end
 
       it 'gets the days for the week' do
