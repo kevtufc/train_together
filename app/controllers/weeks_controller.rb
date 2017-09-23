@@ -18,5 +18,6 @@ class WeeksController < ApplicationController
     @days = current_user.plan_followers.map do |plan_follower|
       plan_follower.days_for(@date)
     end.flatten.sort_by(&:day_of_week)
+    @day = @days.find { |day| day.plan_follower.date_for(day) == @date }
   end
 end

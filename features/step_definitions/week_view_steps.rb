@@ -41,3 +41,7 @@ Then(/^the day (\d+)\/(\d+)\/(\d+) is not selected$/) do |day, month, year|
   date = Date.new(year.to_i, month.to_i, day.to_i)
   expect(page).to_not have_css(".ui.step.active .day time[datetime='#{date.to_s(:db)}']")
 end
+
+Then(/^I see the details for "([^"]*)"$/) do |title|
+  expect(page).to have_css('#selected-day h2', text: title)
+end

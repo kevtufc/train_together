@@ -4,20 +4,20 @@ RSpec.describe "weeks/show.html.slim", type: :view do
 
   let(:plan_follower) { create(:plan_follower) }
   let(:date) { plan_follower.start_date }
+  let(:day_1) { create(:day, plan_follower: plan_follower, day_of_week: 1, title: 'Day One', description: "Wibbler") }
+  let(:day_2) { create(:day, plan_follower: plan_follower, day_of_week: 2, title: 'Day Two', id: 2) }
+  let(:day_3) { create(:day, plan_follower: plan_follower, day_of_week: 3, title: 'Day Three') }
+  let(:days) { [day_1, day_2, day_3] }
+
 
   before(:each) do
     assign(:days, days)
+    assign(:day, day_1)
     assign(:date, date)
     render
   end
 
   context 'with plans this week' do
-    let(:days) do [
-      create(:day, day_of_week: 1, title: 'Day One',   plan_follower: plan_follower),
-      create(:day, day_of_week: 2, title: 'Day Two',   plan_follower: plan_follower),
-      create(:day, day_of_week: 3, title: 'Day Three', plan_follower: plan_follower)
-    ] end
-
     it 'shows the day titles' do
       expect(rendered).to have_css('.day .title', text: 'Day One')
       expect(rendered).to have_css('.day .title', text: 'Day Two')
@@ -36,20 +36,22 @@ RSpec.describe "weeks/show.html.slim", type: :view do
     end
 
     it 'shows the current week date' do
-      expect(rendered).to have_text(date.strftime('%d'))
-      expect(rendered).to have_text(date.strftime('%B'))
-      expect(rendered).to have_text(date.strftime('%Y'))
+      expect(rendered).to have_css('#date-select', text: date.strftime('%d %B %Y'))
     end
 
     it 'shows links to previous and next weeks' do
       expect(rendered).to have_link('next week', href: week_path(date + 1.week))
       expect(rendered).to have_link('previous week', href: week_path(date - 1.week))
     end
+
+    it 'shows the details for the selected day' do
+      expect(rendered).to have_css('#selected-day h2', text: 'Day One' )
+      expect(rendered).to have_css('#selected-day p', text: 'Wibbler' )
+    end
   end
 
   context 'no plans this week' do
     let (:days) { [] }
-
     it 'shows a message if' do
       expect(rendered).to have_css('.day', count: 0)
       expect(rendered).to have_css('#week-summary', text: 'No plans this week')

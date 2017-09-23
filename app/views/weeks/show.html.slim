@@ -4,10 +4,16 @@ h2#date-select
   = @date.strftime('%d %B %Y')
   = link_to week_path(date: @date + 1.week), title: 'next week' do
     i.icon.arrow.right
-section#week-summary
-  - if @days.blank?
-    h2 No plans this week
-  - else
-    .ui.steps style='flex-flow: row wrap'
+    
+#week-summary
+  - if @days.any?
+    .ui.top.attached.steps style='flex-flow: row wrap'
       - @days.each do |day| 
         = render partial: 'days/day_step', object: day
+  - else
+    h2 No plans this week
+
+- if @day
+  #selected-day.attached.segment
+    h2 = @day.title
+    p.description = @day.description

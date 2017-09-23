@@ -7,12 +7,10 @@ RSpec.describe WeeksController, type: :controller do
   let(:team)          { create(:team)          }
   let(:date)          { Date.new(2017, 1, 2)   }
   let(:plan)          { create(:plan)          }
-  let(:days) do [
-      create(:day, day_of_week: 1, title: 'Day One'),
-      create(:day, day_of_week: 3, title: 'Day Three'),
-      create(:day, day_of_week: 2, title: 'Day Two')
-    ]
-  end
+  let(:day_1) { create(:day, day_of_week: 1, title: 'Day One') }
+  let(:day_2) { create(:day, day_of_week: 2, title: 'Day Two', id: 2) }
+  let(:day_3) { create(:day, day_of_week: 3, title: 'Day Three') }
+  let(:days) { [day_1, day_2, day_3] }
 
   context 'as a user set up in a team with a plan' do
     before(:each) do
@@ -54,6 +52,11 @@ RSpec.describe WeeksController, type: :controller do
       it 'sets the plan_follower for the days' do
         get :show, params: { date: date }
         assigns(:days).each { |day| expect(day.plan_follower).to eq(plan.plan_followers.first) }
+      end
+
+      it 'selects the active_day' do
+        get :show, params: { date: date + 1}
+        expect(assigns(:day)).to eq(day_2) 
       end
     end
   end
