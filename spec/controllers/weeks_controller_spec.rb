@@ -56,7 +56,25 @@ RSpec.describe WeeksController, type: :controller do
 
       it 'selects the active_day' do
         get :show, params: { date: date + 1}
-        expect(assigns(:day)).to eq(day_2) 
+        expect(assigns(:day)).to eq(day_2)
+      end
+
+      it 'gets the weeks of the plans' do
+        get :show, params: { date: date }
+        expect(assigns(:weeks).length).to eq(1)
+        expect(assigns(:weeks)).to all(be_a Week)
+      end
+
+      context '10 week long plan' do
+        let(:day_3) { create(:day, week: 10, day_of_week: 3, title: 'Day Three') }
+
+        it 'gets the weeks of the plans' do
+          get :show, params: { date: date }
+          expect(assigns(:weeks).length).to eq(10)
+          expect(assigns(:weeks)).to all(be_a Week)
+          expect(assigns(:weeks).first.start_date).to eq(date)
+          expect(assigns(:weeks).last.start_date).to eq(date + 9.weeks)
+        end
       end
     end
   end

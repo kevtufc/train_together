@@ -6,6 +6,7 @@ class PlanFollower < ApplicationRecord
   validates :team_id, presence: true
   validates :start_date, presence: true
   validate  :start_date_must_be_a_monday
+  delegate :length, to: :plan
 
   def date_to_week_number(date)
     ((date.beginning_of_week - start_date.beginning_of_week) / 7) + 1
@@ -31,6 +32,10 @@ class PlanFollower < ApplicationRecord
 
   def today?(day)
     date_for(day).today?
+  end
+
+  def end_date
+    date_for(days.order(:week, :day_of_week).last)
   end
 
   private

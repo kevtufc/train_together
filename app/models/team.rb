@@ -7,6 +7,5 @@ class Team < ApplicationRecord
 
   def starts_following(plan, on:)
     PlanFollower.create(team_id: id, plan_id: plan.id, start_date: on)
-    return self
   end
 end

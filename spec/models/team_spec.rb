@@ -14,6 +14,6 @@ RSpec.describe Team, type: :model do
   it 'starts following a plan' do
     ret = team.starts_following(plan, on: date)
     expect(PlanFollower.first).to have_attributes(plan_id: plan.id, team_id: team.id, start_date: date)
-    expect(ret).to eq(team)
+    expect(ret).to eq(PlanFollower.first)
   end
 end
