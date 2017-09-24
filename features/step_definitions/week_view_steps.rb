@@ -45,3 +45,8 @@ end
 Then(/^I see the details for "([^"]*)"$/) do |title|
   expect(page).to have_css('#selected-day h2', text: title)
 end
+
+Then(/^I see week (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|
+  date = Date.new(year.to_i, month.to_i, day.to_i)
+  expect(page).to have_css('#current-week-date', text: date.strftime('%d %B %Y'))
+end

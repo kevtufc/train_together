@@ -25,8 +25,12 @@ RSpec.describe "weeks/show.html.slim", type: :view do
     expect(rendered).to have_css('#plan-overview .week', count: 1)
   end
 
-  it 'the plan overview links to the weeks' do
+  it 'links plan overview buttons to the weeks' do
     expect(rendered).to have_css("a.week[href='#{week_path(date: date)}']")
+  end
+
+  it 'has the week number on the plan overview buttons' do
+    expect(rendered).to have_css('a.week', text: weeks.first.week)
   end
 
   context 'with plans this week' do
@@ -48,7 +52,7 @@ RSpec.describe "weeks/show.html.slim", type: :view do
     end
 
     it 'shows the current week date' do
-      expect(rendered).to have_css('#date-select', text: date.strftime('%d %B %Y'))
+      expect(rendered).to have_css('#current-week-date', text: date.strftime('%d %B %Y'))
     end
 
     it 'shows links to previous and next weeks' do

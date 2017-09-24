@@ -22,3 +22,8 @@ Feature: Plan Overview
   Scenario: See the plan overview
     When I view week 06/02/2017
     Then I see 6 weeks in the plan overview
+
+  Scenario: Change weeks using the plan overview
+    When I view week 6/2/2017
+    And I click "4" in the week overview
+    Then I see week 27/2/2017
