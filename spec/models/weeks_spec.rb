@@ -11,12 +11,28 @@ RSpec.describe Week do
         expect(week).to be_a(Week)
       end
 
-      it 'returns the week number' do
+      it 'sets the week number' do
         expect(week.week).to eq(week_number)
       end
 
-      it 'returns the start date' do
+      it 'sets the start date' do
         expect(week.start_date).to eq(start_date)
+      end
+    end
+
+    describe '#end_date' do
+      it 'returns the last day of the week' do
+        expect(week.end_date).to eq(Date.new(2017,9,10))
+      end
+    end
+
+    describe '#this_week?' do
+      it 'returns true if the passed date is in this week' do
+        expect(week.this_week?(start_date + 1.day)).to be_truthy
+      end
+
+      it 'returns false if the passed date is not in this week' do
+        expect(week.this_week?(start_date + 2.weeks)).to be_falsey
       end
     end
   end
@@ -28,7 +44,7 @@ RSpec.describe Week do
 
     describe '#initialize' do
       it 'throws an error because it should start on a Monday' do
-        expect { week }.to raise_error(ArgumentError) 
+        expect { week }.to raise_error(ArgumentError)
       end
     end
   end

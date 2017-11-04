@@ -6,4 +6,12 @@ class Week
     @start_date = start_date
     @week = week
   end
+
+  def end_date
+    start_date.sunday
+  end
+
+  def this_week?(date)
+    (start_date..end_date).include? date
+  end
 end

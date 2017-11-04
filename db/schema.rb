@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170912151439) do
     t.integer "day_of_week"
     t.string "type"
     t.string "title"
-    t.string "description"
+    t.text "description"
     t.integer "minutes"
     t.integer "meters"
     t.datetime "created_at", null: false

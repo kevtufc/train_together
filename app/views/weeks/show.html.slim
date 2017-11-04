@@ -10,11 +10,11 @@ h2#date-select
   span#current-week-date = @date.strftime('%d %B %Y')
   = link_to week_path(date: @date + 1.week), title: 'next week' do
     i.icon.arrow.right
-    
+
 #week-summary
   - if @days.any?
     .ui.top.attached.steps style='flex-flow: row wrap'
-      - @days.each do |day| 
+      - @days.each do |day|
         = render partial: 'days/day_step', object: day
   - else
     h2 No plans this week

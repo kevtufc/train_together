@@ -78,4 +78,15 @@ RSpec.describe "weeks/show.html.slim", type: :view do
       expect(rendered).to_not have_css('#plan-overview')
     end
   end
+
+  context 'with multiple weeks' do
+    let(:weeks) { [Week.new(week: 1, start_date: date), Week.new(week: 2, start_date: date + 1.week)] }
+    it 'highlights the current week' do
+      expect(rendered).to have_css('.week.primary', text: '1')
+    end
+
+    it 'doesn\'t highlight next week' do
+      expect(rendered).not_to have_css('.week.primary', text: '2')
+    end
+  end
 end

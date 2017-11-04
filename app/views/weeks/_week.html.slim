@@ -1,1 +1,1 @@
-a.ui.button.week href=week_path(date: week.start_date) = week.week
+a.ui.basic.button.week class=('primary' if week.this_week?(@date)) href=week_path(date: week.start_date) = week.week
