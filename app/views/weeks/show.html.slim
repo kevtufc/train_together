@@ -13,7 +13,7 @@ h2#date-select
 
 #week-summary
   - if @days.any?
-    .ui.top.attached.steps style='flex-flow: row wrap'
+    .ui.top.attached.mini.steps style='flex-flow: row wrap'
       - @days.each do |day|
         = render partial: 'days/day_step', object: day
   - else
