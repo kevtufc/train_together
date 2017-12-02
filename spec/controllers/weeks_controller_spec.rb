@@ -65,6 +65,25 @@ RSpec.describe WeeksController, type: :controller do
         expect(assigns(:weeks)).to all(be_a Week)
       end
 
+      context 'with a few team members' do
+        before(:each) do
+          team.members << create_list(:user, 3)
+        end
+
+        it 'assigns the team members' do
+          get :show, params: { date: date }
+          expect(assigns(:team).members.length).to eq(4)
+          team.members.each do |member|
+            expect(assigns(:team).members).to include(member)
+          end
+        end
+
+        it 'includes me in the team' do
+          get :show, params: { date: date }
+          expect(assigns(:team).members).to include(user)
+        end
+      end
+
       context '10 week long plan' do
         let(:day_3) { create(:day, week: 10, day_of_week: 3, title: 'Day Three') }
 

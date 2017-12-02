@@ -50,3 +50,7 @@ Then(/^I see week (\d+)\/(\d+)\/(\d+)$/) do |day, month, year|
   date = Date.new(year.to_i, month.to_i, day.to_i)
   expect(page).to have_css('#current-week-date', text: date.strftime('%d %B %Y'))
 end
+
+Then(/^I see a team\-mate called (.*)$/) do |name|
+  expect(page).to have_css('.user .name', text: name)
+end

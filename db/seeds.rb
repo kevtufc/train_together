@@ -1,6 +1,8 @@
 kev = User.create name: 'Kev', email: 'kev@example.com', password: 'password'
+caroline = User.create name: 'Caroline', email: 'caroline@example.com', password: 'password'
 team = Team.create title: 'Kev\'s Team'
 kev.teams << team
+caroline.teams << team
 plan = Plan.create title: 'Kev\'s Plan'
 
 1.upto(10) do |week|

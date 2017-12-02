@@ -23,3 +23,6 @@ h2#date-select
   #selected-day.ui.segment
     h2 = @day.title
     p.description = raw @day.description
+
+- if @team && @team.members.any?
+  #teammates.ui.segment= render partial: 'team_member', collection: @team.members

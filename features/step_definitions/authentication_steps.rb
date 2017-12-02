@@ -2,6 +2,12 @@ Given(/^a user called "([^"]*)" with email "([^"]*)" and password "([^"]*)"$/) d
   User.create(name: name, email: email, password: password)
 end
 
+Given(/^the following users:$/) do |users|
+  users.hashes.each do |user|
+    Team.find_or_create_by(title: user[:team]).members << create(:user, name: user[:name], email: user[:email], password: 'password')
+  end
+end
+
 When(/I log in with email "([^"]*)" and password "([^"]*)"$/) do |email, password|
   visit user_session_path
   fill_in 'user_email', with: email

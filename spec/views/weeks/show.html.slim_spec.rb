@@ -10,7 +10,8 @@ RSpec.describe "weeks/show.html.slim", type: :view do
   let(:days) { [day_1, day_2, day_3] }
   let(:weeks) { [Week.new(week: 1, start_date: date)]  }
   let(:plan) { create(:plan) }
-
+  let(:teammates) { create_list(:user, 3) }
+  let(:team) { create(:team) }
 
   before(:each) do
     assign(:plan, plan)
@@ -18,6 +19,8 @@ RSpec.describe "weeks/show.html.slim", type: :view do
     assign(:day, day_1)
     assign(:date, date)
     assign(:weeks, weeks)
+    team.members << teammates if team
+    assign(:team, team)
     render
   end
 
@@ -64,6 +67,11 @@ RSpec.describe "weeks/show.html.slim", type: :view do
       expect(rendered).to have_css('#selected-day h2', text: 'Day One' )
       expect(rendered).to have_css('#selected-day p', text: 'Wibbler' )
     end
+
+    it 'shows each teammate' do
+      expect(rendered).to have_css('#teammates .user', count: 3)
+      team.members.each { |teammate| expect(rendered).to have_css('.user .name', text: teammate.name) }
+    end
   end
 
   context 'no plans this week' do
@@ -87,6 +95,13 @@ RSpec.describe "weeks/show.html.slim", type: :view do
 
     it 'doesn\'t highlight next week' do
       expect(rendered).not_to have_css('.week.primary', text: '2')
+    end
+  end
+
+  context 'with no team membership' do
+    let(:team) { nil }
+    it 'shows no teammate section' do
+      expect(rendered).not_to have_css('#teammates')
     end
   end
 end

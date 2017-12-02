@@ -6,6 +6,7 @@ class WeeksController < ApplicationController
     load_days
     load_current_plan
     load_weeks
+    load_team
     render action: 'show'
   end
 
@@ -14,6 +15,7 @@ class WeeksController < ApplicationController
     load_days
     load_current_plan
     load_weeks
+    load_team
   end
 
   private
@@ -37,5 +39,9 @@ class WeeksController < ApplicationController
 
   def load_current_plan
     @plan = current_user.current_plan_follower.try(:plan)
+  end
+
+  def load_team
+    @team = current_user.current_plan_follower.try(:team)
   end
 end

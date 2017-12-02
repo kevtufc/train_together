@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    name 'John Lennon'
-    email 'johnlennon@example.com'
+    sequence(:name) { |n| "User #{n}" }
+    sequence(:email) { |n|  "email#{n}@example.com" }
     password 'password, man'
   end
 

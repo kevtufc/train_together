@@ -29,8 +29,8 @@ group :development, :test do
   gem 'cucumber-rails',           require: false
   gem 'validation_rage'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers',         '~> 3.0'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'rails-controller-testing'
 end
