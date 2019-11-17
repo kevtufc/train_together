@@ -8,6 +8,8 @@ class PlanFollower < ApplicationRecord
   validate  :start_date_must_be_a_monday
   delegate :length, to: :plan
 
+  scope :current, -> { where("start_date <= ?", Date.today) }
+
   def date_to_week_number(date)
     ((date.beginning_of_week - start_date.beginning_of_week) / 7) + 1
   end

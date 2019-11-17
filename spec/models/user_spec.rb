@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
-  
+
   context 'following a plan' do
     let(:date) { Date.new(2017, 9, 4) }
     let(:team) { create(:team) }
@@ -28,14 +28,19 @@ RSpec.describe User, type: :model do
       expect(user.plans).to eq([plan])
     end
 
-    it 'gets the current plan follower for a user' do
-      plan2 = create(:plan)
+    it "gets the user's days for a week" do
+      days = [
+        create(:day, week: 1),
+        create(:day, week: 2),
+        create(:day, week: 3),
+        create(:day, week: 3)
+      ]
+      plan.days << days
+      follower = create(:plan_follower, start_date: date, plan: plan)
       user.teams << team
-      pf = team.starts_following(plan, on: date)
-      team.starts_following(plan2, on: date + 10.weeks)
-      Timecop.travel(date)
-      expect(user.current_plan_follower).to eq(pf)
-      Timecop.return
+      team.plan_followers << follower
+      expect(user.days_for(date + 1.week)).to eq([days[1]])
+      expect(user.days_for(date + 2.weeks)).to eq([days[2], days[3]])
     end
   end
 

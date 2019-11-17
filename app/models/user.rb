@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :days, through: :plans
 
   def current_plan_follower
-    plan_followers.where("start_date <= ?", Date.today).order(:start_date).first
+    plan_followers.current.order(:start_date).first
+  end
+
+  def days_for(date)
+    plan_followers.flat_map { |f| f.days_for(date) }
   end
 end
