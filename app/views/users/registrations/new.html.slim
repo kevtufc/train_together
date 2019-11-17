@@ -4,7 +4,7 @@
       h1.ui.teal.header.brand.center.aligned Sign up and Train Together
       = form_for(User.new, as: 'user', url: registration_path('user'), html: { class: ['ui', 'form'] }) do |f|
         .ui.segment
-          = devise_error_messages!
+          = render partial: 'devise/shared/error_messages'
           .field
             = f.label :name
             = f.text_field :name, autofocus: true
