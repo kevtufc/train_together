@@ -29,7 +29,7 @@ class WeeksController < ApplicationController
 
   def load_weeks
     return @weeks = [] unless @plan
-    @weeks = (1..(current_user.current_plan_follower.plan.length)).map do |week|
+    @weeks = (1..(current_user.current_plan_follower.length)).map do |week|
       Week.new(
       week: week,
       start_date: current_user.current_plan_follower.start_date + (week - 1).weeks
