@@ -27,6 +27,20 @@ RSpec.describe WorkoutsController, type: :controller do
         expect(new_workout).to have_attributes(user_id: user.id, day_id: day.id)
         expect(user.workouts.first).to eq(new_workout)
         expect(day.workouts.first).to  eq(new_workout)
+        expect(flash.notice).not_to be_present
+      end
+
+      it 'rejects new workouts for someone else' do
+        expect do
+          post :create, params: { user_id: create(:user).id, day_id: day.id }
+        end.not_to change { Workout.count }
+        expect(flash.alert).to be_present
+      end
+
+      it 'rejects new workout for non-existent users' do
+        expect do
+          post :create, params: { user_id: 999, day_id: day.id }
+        end.not_to change { Workout.count }
       end
     end
   end
