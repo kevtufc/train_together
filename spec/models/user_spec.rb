@@ -15,6 +15,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many :plans }
     it { is_expected.to have_many :plan_followers }
     it { is_expected.to have_many :days }
+    it { is_expected.to have_many :workouts }
 
     it 'gets the teams for a user' do
       user.teams << team
