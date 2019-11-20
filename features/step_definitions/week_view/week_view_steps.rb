@@ -54,3 +54,11 @@ end
 Then(/^I see a team\-mate called (.*)$/) do |name|
   expect(page).to have_css('.user .name', text: name)
 end
+
+Then(/^the day of the week (\w+) is selected$/) do |day|
+  expect(page).to have_css('.step.active time', text: day)
+end
+
+When(/^I click on (\w+)$/) do |day|
+  find('.step time', text: day).ancestor('a').click()
+end

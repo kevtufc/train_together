@@ -1,6 +1,6 @@
 doctype html
 html
-  head 
+  head
     title Train Together
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -10,4 +10,4 @@ html
     = render 'layouts/topbar'
     .ui.container
       = render 'layouts/notices'
-      main = yield  
+      main = yield

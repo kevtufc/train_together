@@ -23,6 +23,12 @@ h2#date-select
   #selected-day.ui.segment
     h2 = @day.title
     p.description = raw @day.description
+    button.ui.primary.button data-show-modal = "#complete-dialog"
+      i.icon.check
+      | Complete
+  #complete-dialog.ui.modal
+    h2 Complete day
+    button.ui.primary.button OK
 
 - if @team && @team.members.any?
   #teammates.ui.segment= render partial: 'team_member', collection: @team.members

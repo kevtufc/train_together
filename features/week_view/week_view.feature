@@ -46,7 +46,13 @@ Feature: Week View
   Scenario: Highlight selected day
     When I view day 3/1/2017
     Then the day 3/1/2017 is selected
-    And the day 4/1/2017 is not selected
+    But the day 4/1/2017 is not selected
+
+  Scenario: Change days
+    When I view day 3/1/2017
+    Then the day of the week Tuesday is selected
+    When I click on Thursday
+    Then the day of the week Thursday is selected
 
   Scenario: See details for highlighted date
     When I view day 4/1/2017

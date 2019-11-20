@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "weeks/show.html.slim", type: :view do
-
+RSpec.describe 'weeks/show.html.slim', type: :view do
   let(:plan_follower) { create(:plan_follower) }
   let(:date) { plan_follower.start_date }
-  let(:day_1) { create(:day, plan_follower: plan_follower, day_of_week: 1, title: 'Day One', description: "Wibbler") }
+  let(:day_1) { create(:day, plan_follower: plan_follower, day_of_week: 1, title: 'Day One', description: 'Wibbler') }
   let(:day_2) { create(:day, plan_follower: plan_follower, day_of_week: 2, title: 'Day Two', id: 2) }
   let(:day_3) { create(:day, plan_follower: plan_follower, day_of_week: 3, title: 'Day Three') }
   let(:days) { [day_1, day_2, day_3] }
-  let(:weeks) { [Week.new(week: 1, start_date: date)]  }
+  let(:weeks) { [Week.new(week: 1, start_date: date)] }
   let(:plan) { create(:plan) }
   let(:teammates) { create_list(:user, 3) }
   let(:team) { create(:team) }
@@ -64,13 +65,22 @@ RSpec.describe "weeks/show.html.slim", type: :view do
     end
 
     it 'shows the details for the selected day' do
-      expect(rendered).to have_css('#selected-day h2', text: 'Day One' )
-      expect(rendered).to have_css('#selected-day p', text: 'Wibbler' )
+      expect(rendered).to have_css('#selected-day h2', text: 'Day One')
+      expect(rendered).to have_css('#selected-day p', text: 'Wibbler')
     end
 
     it 'shows each teammate' do
       expect(rendered).to have_css('#teammates .user', count: 3)
       team.members.each { |teammate| expect(rendered).to have_css('.user .name', text: teammate.name) }
+    end
+
+    it 'shows the complete button' do
+      expect(rendered).to have_css('#selected-day button', text: 'Complete')
+    end
+
+    it 'has a hidden completion dialog with an OK button' do
+      expect(rendered).to have_css('#complete-dialog.ui.modal')
+      expect(rendered).to have_css('#complete-dialog.ui.modal button', text: 'OK', visible: false)
     end
   end
 
